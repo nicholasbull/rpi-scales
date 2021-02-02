@@ -10,12 +10,15 @@ from time import sleep
 import random
 
 
-image1 = Image.open("lloyds.png")
-image2 = Image.open("lbg.png")
+image_ba = Image.open("BA.PNG")
+image_bi = Image.open("BI.PNG")
+image_de = Image.open("DE.PNG")
+image_ds = Image.open("DS.PNG")
+image_gdao = Image.open("GDAO.PNG")
 
 def weigh():
     """we'll repurpose this function with the scales weight"""
-    return random.choice([1,2])
+    return random.choice([63, 69, 78, 85, 296])
 
 
 root = tkinter.Tk()
@@ -45,12 +48,26 @@ while True:
     if root.state() != 'normal':
         # ESC key changes root state becauase of key binding above
         break
-    if weigh() == 1:
-        image = configure_image(image1)
+    if weigh() == 63:
+        image = configure_image(image_de)
         canvas.create_image(w/2,h/2,image=image)
-    else:
-        image = configure_image(image2)
+
+    elif weigh() == 69:
+        image = configure_image(image_ds)
         canvas.create_image(w/2,h/2,image=image)
+
+    elif weigh() == 78:
+        image = configure_image(image_bi)
+        canvas.create_image(w/2,h/2,image=image)
+
+    elif weigh() == 85:
+        image = configure_image(image_ba)
+        canvas.create_image(w/2,h/2,image=image)
+
+    elif weigh() == 296:
+        image = configure_image(image_gdao)
+        canvas.create_image(w/2,h/2,image=image)
+
     root.update_idletasks()
     root.update()
     sleep(1)
