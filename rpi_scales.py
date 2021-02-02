@@ -9,6 +9,7 @@ from PIL import Image, ImageTk
 from time import sleep
 import random
 
+from weigh import initialise, weigh
 
 image_ba = Image.open("BA.PNG")
 image_bi = Image.open("BI.PNG")
@@ -16,9 +17,10 @@ image_de = Image.open("DE.PNG")
 image_ds = Image.open("DS.PNG")
 image_gdao = Image.open("GDAO.PNG")
 
-def weigh():
-    """we'll repurpose this function with the scales weight"""
-    return random.choice([63, 69, 78, 85, 296])
+# No longer need this, import from weigh:
+# def weigh():
+#     """we'll repurpose this function with the scales weight"""
+#     return random.choice([63, 69, 78, 85, 296])
 
 
 root = tkinter.Tk()
@@ -43,28 +45,32 @@ def configure_image(unconfigured_image):
     configured_image = ImageTk.PhotoImage(unconfigured_image)
     return configured_image
 
+hx = initialise()
+sleep(2)
 
 while True:
     if root.state() != 'normal':
         # ESC key changes root state becauase of key binding above
         break
-    if weigh() == 63:
+    weight = int(weigh(hx))
+    
+    if weigh() < 65:
         image = configure_image(image_de)
         canvas.create_image(w/2,h/2,image=image)
 
-    elif weigh() == 69:
+    elif weigh() < 72:
         image = configure_image(image_ds)
         canvas.create_image(w/2,h/2,image=image)
 
-    elif weigh() == 78:
+    elif weigh() < 80:
         image = configure_image(image_bi)
         canvas.create_image(w/2,h/2,image=image)
 
-    elif weigh() == 85:
+    elif weigh() < 100:
         image = configure_image(image_ba)
         canvas.create_image(w/2,h/2,image=image)
 
-    elif weigh() == 296:
+    else:
         image = configure_image(image_gdao)
         canvas.create_image(w/2,h/2,image=image)
 
